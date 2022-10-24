@@ -81,17 +81,16 @@ PS C:\Code\testing\repro> pnpm jest-babel-one
   console.log
     Timezone Offset: 0
 
-      at Object.log (lib/formatDate.test.ts:8:15)
+      at Object.log (lib/formatDate.test.ts:8:13)
 
  PASS  lib/formatDate.test.ts
-  formatDate()
-    with pattern
-      √ returns correct value (19 ms)
+  ISO Date
+    √ returns correct hour value (32 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        0.405 s
+Time:        0.605 s
 Ran all test suites matching /lib\\formatDate.test.ts/i.
 ```
 
@@ -131,34 +130,33 @@ PS C:\Code\testing\repro> pnpm jest-next-one
   console.log
     Timezone Offset: -600
 
-      at Object.log (lib/formatDate.test.ts:8:15)
+      at Object.log (lib/formatDate.test.ts:8:13)
 
  FAIL  lib/formatDate.test.ts
-  formatDate()
-    with pattern
-      × returns correct value (20 ms)
+  ISO Date
+    × returns correct hour value (21 ms)
 
-  ● formatDate() › with pattern › returns correct value
+  ● ISO Date › returns correct hour value
 
     expect(received).toBe(expected) // Object.is equality
 
     Expected: 13
     Received: 23
 
-       8 |       console.log(`Timezone Offset: ${new Date().getTimezoneOffset()}`);
+       8 |     console.log(`Timezone Offset: ${new Date().getTimezoneOffset()}`);
        9 |
-    > 10 |       expect(new Date(date).getHours()).toBe(13);
-         |                                         ^
-      11 |     });
-      12 |   });
-      13 | });
+    > 10 |     expect(new Date(date).getHours()).toBe(13);
+         |                                       ^
+      11 |   });
+      12 | });
+      13 |
 
-      at Object.toBe (lib/formatDate.test.ts:10:41)
+      at Object.toBe (lib/formatDate.test.ts:10:39)
 
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        0.567 s
+Time:        0.433 s
 Ran all test suites matching /lib\\formatDate.test.ts/i.
  ELIFECYCLE  Command failed with exit code 1.
 ```
