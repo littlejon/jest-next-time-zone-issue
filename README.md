@@ -27,3 +27,140 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 If your reproduction needs to be deployed, the easiest way is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Reproduction
+
+Clone repo and install
+
+```
+pnpm install
+```
+
+## Run Tests
+
+```
+pnpm jest-babel-all
+pnpm jest-babel-one
+pnpm jest-next-all
+pnpm jest-next-one
+```
+
+### jest-babel-all
+
+```
+PS C:\Code\testing\repro> pnpm jest-babel-all
+
+> @ jest-babel-all C:\Code\testing\repro
+> jest --no-cache --config ./jest.config.babel.js
+
+ PASS  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: 0
+
+      at Object.log (lib/formatDate.test.ts:8:15)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.529 s
+Ran all test suites.
+```
+
+### jest-babel-one
+
+```
+PS C:\Code\testing\repro> pnpm jest-babel-one
+
+> @ jest-babel-one C:\Code\testing\repro
+> jest --no-cache --config ./jest.config.babel.js lib/formatDate.test.ts
+
+  console.log
+    Timezone Offset: 0
+
+      at Object.log (lib/formatDate.test.ts:8:15)
+
+ PASS  lib/formatDate.test.ts
+  formatDate()
+    with pattern
+      √ returns correct value (19 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.405 s
+Ran all test suites matching /lib\\formatDate.test.ts/i.
+```
+
+### jest-next-all
+
+```
+PS C:\Code\testing\repro> pnpm jest-next-all
+
+> @ jest-next-all C:\Code\testing\repro
+> jest --no-cache --config ./jest.config.next.js
+
+ PASS  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: 0
+
+      at Object.log (lib/formatDate.test.ts:8:15)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.006 s
+Ran all test suites.
+```
+
+### jest-next-one
+
+```
+PS C:\Code\testing\repro> pnpm jest-next-one
+
+> @ jest-next-one C:\Code\testing\repro
+> jest --no-cache --config ./jest.config.next.js lib/formatDate.test.ts
+
+  console.log
+    Timezone Offset: -600
+
+      at Object.log (lib/formatDate.test.ts:8:15)
+
+ FAIL  lib/formatDate.test.ts
+  formatDate()
+    with pattern
+      × returns correct value (20 ms)
+
+  ● formatDate() › with pattern › returns correct value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 13
+    Received: 23
+
+       8 |       console.log(`Timezone Offset: ${new Date().getTimezoneOffset()}`);
+       9 |
+    > 10 |       expect(new Date(date).getHours()).toBe(13);
+         |                                         ^
+      11 |     });
+      12 |   });
+      13 | });
+
+      at Object.toBe (lib/formatDate.test.ts:10:41)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        0.567 s
+Ran all test suites matching /lib\\formatDate.test.ts/i.
+ ELIFECYCLE  Command failed with exit code 1.
+```
+
+
