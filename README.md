@@ -40,17 +40,21 @@ pnpm install
 
 ```
 pnpm jest-babel-all
+pnpm jest-babel-all-w1
+pnpm jest-babel-all-w2
+pnpm jest-babel-all-i
 pnpm jest-babel-one
 pnpm jest-next-all
 pnpm jest-next-one
+pnpm jest-next-all-w1
+pnpm jest-next-all-w2
+pnpm jest-next-all-i
 ```
 
 ### jest-babel-all
 
 ```
-PS C:\Code\testing\repro> pnpm jest-babel-all
-
-> @ jest-babel-all C:\Code\testing\repro
+> @ jest-babel-all C:\Code\zzTesting\jest-next-time-zone-issue
 > jest --no-cache --config ./jest.config.babel.js
 
  PASS  lib/formatDate.test.ts
@@ -59,23 +63,90 @@ PS C:\Code\testing\repro> pnpm jest-babel-all
     console.log
       Timezone Offset: 0
 
-      at Object.log (lib/formatDate.test.ts:8:15)
+      at Object.log (lib/formatDate.test.ts:8:13)
 
  PASS  lib/randomFile.test.ts
 
 Test Suites: 2 passed, 2 total
 Tests:       2 passed, 2 total
 Snapshots:   0 total
-Time:        1.529 s
+Time:        1.426 s
+Ran all test suites.
+```
+
+### jest-babel-all-w1
+
+```
+> @ jest-babel-all-w1 C:\Code\zzTesting\jest-next-time-zone-issue
+> jest -w 1 --no-cache --config ./jest.config.babel.js
+
+ PASS  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: 0
+
+      at Object.log (lib/formatDate.test.ts:8:13)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.582 s
+Ran all test suites.
+```
+
+### jest-babel-all-w2
+
+```
+> @ jest-babel-all-w2 C:\Code\zzTesting\jest-next-time-zone-issue
+> jest -w 2--no-cache --config ./jest.config.babel.js
+
+ PASS  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: 0
+
+      at Object.log (lib/formatDate.test.ts:8:13)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.692 s, estimated 1 s
+Ran all test suites.
+```
+
+### jest-babel-all-i
+
+```
+> @ jest-babel-all-i C:\Code\zzTesting\jest-next-time-zone-issue
+> jest -i --no-cache --config ./jest.config.babel.js
+
+ PASS  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: 0
+
+      at Object.log (lib/formatDate.test.ts:8:13)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.862 s
 Ran all test suites.
 ```
 
 ### jest-babel-one
 
 ```
-PS C:\Code\testing\repro> pnpm jest-babel-one
-
-> @ jest-babel-one C:\Code\testing\repro
+> @ jest-babel-one C:\Code\zzTesting\jest-next-time-zone-issue
 > jest --no-cache --config ./jest.config.babel.js lib/formatDate.test.ts
 
   console.log
@@ -85,21 +156,19 @@ PS C:\Code\testing\repro> pnpm jest-babel-one
 
  PASS  lib/formatDate.test.ts
   ISO Date
-    √ returns correct hour value (32 ms)
+    √ returns correct hour value (30 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       1 passed, 1 total
 Snapshots:   0 total
-Time:        0.605 s
+Time:        0.531 s
 Ran all test suites matching /lib\\formatDate.test.ts/i.
 ```
 
-### jest-next-all
+### jest-next-all (PASS)
 
 ```
-PS C:\Code\testing\repro> pnpm jest-next-all
-
-> @ jest-next-all C:\Code\testing\repro
+> @ jest-next-all C:\Code\zzTesting\jest-next-time-zone-issue
 > jest --no-cache --config ./jest.config.next.js
 
  PASS  lib/formatDate.test.ts
@@ -108,23 +177,21 @@ PS C:\Code\testing\repro> pnpm jest-next-all
     console.log
       Timezone Offset: 0
 
-      at Object.log (lib/formatDate.test.ts:8:15)
+      at Object.log (lib/formatDate.test.ts:8:13)
 
  PASS  lib/randomFile.test.ts
 
 Test Suites: 2 passed, 2 total
 Tests:       2 passed, 2 total
 Snapshots:   0 total
-Time:        1.006 s
+Time:        1.433 s
 Ran all test suites.
 ```
 
-### jest-next-one
+### jest-next-one (FAIL)
 
 ```
-PS C:\Code\testing\repro> pnpm jest-next-one
-
-> @ jest-next-one C:\Code\testing\repro
+> @ jest-next-one C:\Code\zzTesting\jest-next-time-zone-issue
 > jest --no-cache --config ./jest.config.next.js lib/formatDate.test.ts
 
   console.log
@@ -134,7 +201,7 @@ PS C:\Code\testing\repro> pnpm jest-next-one
 
  FAIL  lib/formatDate.test.ts
   ISO Date
-    × returns correct hour value (21 ms)
+    × returns correct hour value (32 ms)
 
   ● ISO Date › returns correct hour value
 
@@ -156,9 +223,118 @@ PS C:\Code\testing\repro> pnpm jest-next-one
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        0.433 s
+Time:        0.525 s
 Ran all test suites matching /lib\\formatDate.test.ts/i.
  ELIFECYCLE  Command failed with exit code 1.
 ```
 
+### jest-next-all-w1 (FAIL)
 
+**Run with `--maxWorkers=1`**
+
+```
+> @ jest-next-all-w1 C:\Code\zzTesting\jest-next-time-zone-issue
+> jest -w 1 --no-cache --config ./jest.config.next.js
+
+ FAIL  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: -600
+
+      at Object.log (lib/formatDate.test.ts:8:13)
+
+  ● ISO Date › returns correct hour value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 13
+    Received: 23
+
+       8 |     console.log(`Timezone Offset: ${new Date().getTimezoneOffset()}`);
+       9 |
+    > 10 |     expect(new Date(date).getHours()).toBe(13);
+         |                                       ^
+      11 |   });
+      12 | });
+      13 |
+
+      at Object.toBe (lib/formatDate.test.ts:10:39)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        0.633 s
+Ran all test suites.
+ ELIFECYCLE  Command failed with exit code 1.
+```
+
+### jest-next-all-w2 (PASS)
+
+**Run with `--maxWorkers=2`**
+
+```
+> @ jest-next-all-w2 C:\Code\zzTesting\jest-next-time-zone-issue
+> jest -w 2 --no-cache --config ./jest.config.next.js
+
+ PASS  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: 0
+
+      at Object.log (lib/formatDate.test.ts:8:13)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.256 s
+Ran all test suites.
+```
+
+### jest-next-all-i (FAIL)
+
+**Run with `--runInBand`**
+
+```
+> @ jest-next-all-i C:\Code\zzTesting\jest-next-time-zone-issue
+> jest -i --no-cache --config ./jest.config.next.js
+
+ FAIL  lib/formatDate.test.ts
+  ● Console
+
+    console.log
+      Timezone Offset: -600
+
+      at Object.log (lib/formatDate.test.ts:8:13)
+
+  ● ISO Date › returns correct hour value
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 13
+    Received: 23
+
+       8 |     console.log(`Timezone Offset: ${new Date().getTimezoneOffset()}`);
+       9 |
+    > 10 |     expect(new Date(date).getHours()).toBe(13);
+         |                                       ^
+      11 |   });
+      12 | });
+      13 |
+
+      at Object.toBe (lib/formatDate.test.ts:10:39)
+
+ PASS  lib/randomFile.test.ts
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        0.638 s
+Ran all test suites.
+ ELIFECYCLE  Command failed with exit code 1.
+```

@@ -5,9 +5,15 @@
     "build": "next build",
     "start": "next start",
     "jest-babel-all": "jest --no-cache --config ./jest.config.babel.js",
+    "jest-babel-all-w1": "jest -w 1 --no-cache --config ./jest.config.babel.js",
+    "jest-babel-all-w2": "jest -w 2--no-cache --config ./jest.config.babel.js",
+    "jest-babel-all-i": "jest -i --no-cache --config ./jest.config.babel.js",
     "jest-babel-one": "jest --no-cache --config ./jest.config.babel.js lib/formatDate.test.ts",
     "jest-next-all": "jest --no-cache --config ./jest.config.next.js",
-    "jest-next-one": "jest --no-cache --config ./jest.config.next.js lib/formatDate.test.ts"
+    "jest-next-one": "jest --no-cache --config ./jest.config.next.js lib/formatDate.test.ts",
+    "jest-next-all-w1": "jest -w 1 --no-cache --config ./jest.config.next.js",
+    "jest-next-all-w2": "jest -w 2 --no-cache --config ./jest.config.next.js",
+    "jest-next-all-i": "jest -i --no-cache --config ./jest.config.next.js"
   },
   "dependencies": {
     "next": "^13.0.0",
